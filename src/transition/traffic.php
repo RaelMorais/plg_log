@@ -40,7 +40,7 @@ include_once("../header.php");
     <script src="/assets/js/saida-controller/quantificador-saida.js"></script>
     <script src="/assets/js/saida-controller/verificador.js"></script>
 
-    <!--<script src="/assets/js/max-and-min-pallet.js"></script>-->
+    <script src="/assets/js/max-and-min-pallet.js">
 
     <!--<script src="/assets/js/controleSaida.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
