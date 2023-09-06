@@ -10,12 +10,16 @@ async function showpallets() {
                 const detalhesPallets = await response.json();
 
                 if (detalhesPallets.length > 0) {
+                    const movimentacao = (detalhesPallets, 'movimentacao');
                     const totalPallet1 = calcularTotalPallet(detalhesPallets, 'pallet1');
                     const totalPallet2 = calcularTotalPallet(detalhesPallets, 'pallet2');
                     const totalPallet3 = calcularTotalPallet(detalhesPallets, 'pallet3');
                     const totalPallet4 = calcularTotalPallet(detalhesPallets, 'pallet4');
                     const totalPallet5 = calcularTotalPallet(detalhesPallets, 'pallet5');
                     const totalPallet6 = calcularTotalPallet(detalhesPallets, 'pallet6');
+
+                    const palsum = totalPallet1 + totalPallet2 + totalPallet3 + totalPallet4 + totalPallet5 + totalPallet6;
+                    document.getElementById('inpTotalPalletValue').textContent = palsum.toString();
 
                     atualizarQtdProdt('qtdProdt1', totalPallet1);
                     atualizarQtdProdt('qtdProdt2', totalPallet2);

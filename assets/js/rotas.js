@@ -21,3 +21,7 @@ function cadProduto(){
 function home(){
     window.location.href="/src/home.php";
 }
+
+function gerenciamentoDados(){
+    window.location.href="/src/exibicao.php";
+}

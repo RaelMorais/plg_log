@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class ="campos_botoes">
-        <label id="inpTotalPalletValue" disable>0</label>
+        <label id="inpTotalPalletValueSaida" disable>0</label>
         <div class="text-center d-flex justify-content-center align-items-center">
           <button class="btn btn-primary" type="button" onclick="MovimentacaoProdutos()">Cancelar</button>
           <button class="btn btn-primary" type="button" id="enviarButton">enviar</button>
