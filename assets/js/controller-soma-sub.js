@@ -35,10 +35,12 @@ function maxInputValue(editavelElement) {
     const inputValueRetirada = document.getElementById('inputValueRetirada').value;
     var valorAtual = parseInt(editavelElement.textContent);
 
-    if (selecao === 1) {
+    if (selecao == 1) {
         inputValueToUse = inputValue;
-    } else {
+    } 
+    if (selecao == 2) {
         inputValueToUse = inputValueRetirada;
+        console.log(1);
     }
 
     if (valorAtual < inputValueToUse && palsum < inputValueToUse) {

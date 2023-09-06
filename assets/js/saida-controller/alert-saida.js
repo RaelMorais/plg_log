@@ -1,6 +1,6 @@
 function mostrarAlertaSaida() {
     document.getElementById("alertOverlaySaida").style.display = "flex";
-    document.getElementById("movimentacao-hidden").value = 1;
+    document.getElementById("movimentacao-hidden").value = 2;
 }
 
 function fecharAlertaSaida() {
