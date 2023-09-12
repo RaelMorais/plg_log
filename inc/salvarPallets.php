@@ -11,8 +11,8 @@ $editavel5 = $_POST['editavel5'];
 $editavel6 = $_POST['editavel6'];
 
 // Realizar o insert na tabela movimentacao
-$sqlMovimentacao = "INSERT INTO movimentacao (pallet1, pallet2, pallet3, pallet4, pallet5, pallet6, movimentacao) 
-VALUES ('$editavel1', '$editavel2', '$editavel3', '$editavel4', '$editavel5', '$editavel6', '$movimentacao')";
+$sqlMovimentacao = "INSERT INTO movimentacao (codigo ,pallet1, pallet2, pallet3, pallet4, pallet5, pallet6, movimentacao) 
+VALUES ('$codigo', '$editavel1', '$editavel2', '$editavel3', '$editavel4', '$editavel5', '$editavel6', '$movimentacao')";
 
 $insertMovimentacao = mysqli_query($conexao, $sqlMovimentacao);
 

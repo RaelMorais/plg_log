@@ -18,19 +18,23 @@ echo "<table class='table table-dark table-striped'>
         </thead>
     <tbody>";
 
-$sql = "SELECT pallets.codigo, movimentacao.data, movimentacao.movimentacao, pallets.pallet1, pallets.pallet2, pallets.pallet3, pallets.pallet4, pallets.pallet5, pallets.pallet6
+$sql = "SELECT DISTINCT pallets.codigo, pallets.data, movimentacao.movimentacao, movimentacao.pallet1, movimentacao.pallet2, movimentacao.pallet3, movimentacao.pallet4, movimentacao.pallet5, movimentacao.pallet6
         FROM pallets
-        JOIN movimentacao ON pallets.codigo = movimentacao.codigo"; 
+        JOIN movimentacao ON pallets.id_movimentacao = movimentacao.id"; 
 
 $result = mysqli_query($conexao, $sql);
-$rows = mysqli_num_rows($result);
 
-if($rows > 0){
+if($result){
     while($row = mysqli_fetch_assoc($result)){
         echo "<tr>";
         echo "<td>" . $row['codigo'] . "</td>";
         echo "<td>" . $row['data'] . "</td>";
-        echo "<td>" . $row['movimentacao'] . "</td>";
+        if($row['movimentacao'] == 1){
+            echo "<td> Entrada </td>";
+        } 
+        if ($row['movimentacao'] == 2) {
+            echo "<td> Saida </td>";
+        }
         echo "<td>" . $row['pallet1'] . "</td>";
         echo "<td>" . $row['pallet2'] . "</td>";
         echo "<td>" . $row['pallet3'] . "</td>";
@@ -39,6 +43,8 @@ if($rows > 0){
         echo "<td>" . $row['pallet6'] . "</td>";
         echo "</tr>";
     }
+} else {
+    echo "Erro na consulta: " . mysqli_error($conexao);
 }
 
 echo "</tbody></table>";

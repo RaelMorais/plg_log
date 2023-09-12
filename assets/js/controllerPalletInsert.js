@@ -2,8 +2,6 @@ var bt1 = document.getElementById("enviarButton");
 
 bt1?.addEventListener("click", async function() {
 
-    console.log("passou!");
-
     // Capturar os valores das labels editáveis
     var movimentacao = document.getElementById("movimentacao-hidden").value;
     var codigo = document.getElementById("codigo-hidden").value;
@@ -13,8 +11,6 @@ bt1?.addEventListener("click", async function() {
     var editavel4 = document.getElementById("editavel4").textContent;
     var editavel5 = document.getElementById("editavel5").textContent;
     var editavel6 = document.getElementById("editavel6").textContent;
-
-    console.log(codigo);
 
     // Construir o objeto FormData para enviar os valores
     var formData = new FormData();
@@ -26,7 +22,7 @@ bt1?.addEventListener("click", async function() {
     formData.append('editavel4', editavel4);
     formData.append('editavel5', editavel5);
     formData.append('editavel6', editavel6);
-    console.log(formData);
+
     try {
         const response = await fetch('/inc/salvarPallets.php', {
             method: 'POST',
