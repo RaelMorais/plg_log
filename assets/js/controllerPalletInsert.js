@@ -12,6 +12,8 @@ bt1?.addEventListener("click", async function() {
     var editavel5 = document.getElementById("editavel5").textContent;
     var editavel6 = document.getElementById("editavel6").textContent;
 
+    console.log(movimentacao);
+
     // Construir o objeto FormData para enviar os valores
     var formData = new FormData();
     formData.append('movimentacao', movimentacao);
@@ -32,6 +34,7 @@ bt1?.addEventListener("click", async function() {
 
         if (response.ok) {
             const resultado = await response.text();
+            console.log(resultado);
             window.location.href='/src/home.php';
         } else {
             throw new Error("Erro na requisição: " + response.status);
