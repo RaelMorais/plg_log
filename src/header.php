@@ -21,6 +21,7 @@ if (isset($_COOKIE["username"])) {
 
     <link rel="stylesheet" type="text/css" href="/assets/style/alert_traffic.css">
     <link rel="stylesheet" type="text/css" href="/assets/style/valor_invalido.css">
+    <link rel="stylesheet" type="text/css" href="/assets/style/cad.produto.css">
     <script src="/assets/js/rotas.js"></script>
     <script src="/assets/js/controller-soma-sub.js"></script>
 

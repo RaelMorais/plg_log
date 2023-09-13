@@ -1,0 +1,22 @@
+/* Estilos para os botões */
+.btn-ciano {
+    background-color: #006699; /* Cor ciano escuro */
+    color: white; /* Texto branco */
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+.btn-ciano:hover {
+    background-color: #005588; /* Cor ciano escuro mais escura ao passar o mouse */
+}
+
+/* Outros estilos */
+body {
+    font-family: "Times New Roman", serif;
+    background-color: #f0f0f0; /* Cor de fundo padrão */
+    margin: 0;
+}
