@@ -10,7 +10,7 @@ if (isset($_COOKIE["username"])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5;url=home.php">
+    <meta http-equiv="refresh" content="8;url=home.php">
     <title>Splash Screen</title>
     <style>
         body {
