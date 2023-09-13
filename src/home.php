@@ -2,6 +2,7 @@
     <article>
         <div class="btns-sect text-center d-flex justify-content-center align-items-center vh-100">
             <div class="d-grid gap-2 small">
+                <h6> Bem vindo! <?php echo $nomeUsuario; ?></h6>
                 <button class="btn btn-primary" type="submit" onclick="cadastro()">Cadastro</button>
                 <button class="btn btn-primary" type="submit" onclick="MovimentacaoProdutos()">Movimentação de Produto</button>
                 <button class="btn btn-primary" type="submit" onclick="gerenciamentoDados()">Gerenciamento de Dados</button>

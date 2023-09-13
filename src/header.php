@@ -1,3 +1,11 @@
+<?php
+if (isset($_COOKIE["username"])) {
+    $nomeUsuario = $_COOKIE["username"];
+} else {
+    header('Location: /src/login.html');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,8 +23,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/style/valor_invalido.css">
     <script src="/assets/js/rotas.js"></script>
     <script src="/assets/js/controller-soma-sub.js"></script>
-
-
 
 </head>
 <body>
