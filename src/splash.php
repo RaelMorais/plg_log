@@ -28,6 +28,7 @@ if (isset($_COOKIE["username"])) {
 </head>
 <body>
     <div class="splash-content">
+        <img src="/assets/images/entrega.gif" alt="caminhão de entrega" style="width:96px;height:96px;"> 
         <h1>Bem-vindo! <?php echo $nomeUsuario; ?></h1>
         <p>Aguarde enquanto redirecionamos para a página de início.</p>
     </div>
