@@ -12,7 +12,8 @@ if (isset($_COOKIE["username"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PJL LOG</title>
-    <link rel="icon" type="image/x-icon" href="/assets/images/codigo.png">
+    <!--<link rel="icon" type="image/x-icon" href="/assets/images/codigo.png">-->
+    <link rel="icon" type="image/x-icon" href="/imagens/Logo_MEIM_1.png">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" 
