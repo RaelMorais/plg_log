@@ -56,3 +56,34 @@ function calcularTotalPallet(pallets, propertyName) {
 function atualizarQtdProdt(id, totalPallet) {
     document.getElementById(id).textContent = totalPallet;
 }
+
+/*function check_perdencimento(){
+
+    if (detalhesPallets.length > 0) {
+        const entradaPallets = [];
+        const saidaPallets = [];
+
+        detalhesPallets.forEach((pallet) => {
+            const movimentacao = pallet.movimentacao;
+            if (movimentacao === 1) {
+                entradaPallets.push(pallet);
+                const totalPallet1ent = calcularTotalPallet(detalhesPallets, 'pallet1');
+                const totalPallet2ent = calcularTotalPallet(detalhesPallets, 'pallet2');
+                const totalPallet3ent = calcularTotalPallet(detalhesPallets, 'pallet3');
+                const totalPallet4ent = calcularTotalPallet(detalhesPallets, 'pallet4');
+                const totalPallet5ent = calcularTotalPallet(detalhesPallets, 'pallet5');
+                const totalPallet6ent = calcularTotalPallet(detalhesPallets, 'pallet6');
+            } else if (movimentacao === 2) {
+                saidaPallets.push(pallet);
+                const totalPallet1 = calcularTotalPallet(detalhesPallets, 'pallet1');
+                const totalPallet2 = calcularTotalPallet(detalhesPallets, 'pallet2');
+                const totalPallet3 = calcularTotalPallet(detalhesPallets, 'pallet3');
+                const totalPallet4 = calcularTotalPallet(detalhesPallets, 'pallet4');
+                const totalPallet5 = calcularTotalPallet(detalhesPallets, 'pallet5');
+                const totalPallet6 = calcularTotalPallet(detalhesPallets, 'pallet6');
+            }
+        });
+
+    }
+
+}*/

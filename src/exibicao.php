@@ -5,6 +5,7 @@ include('../inc/conexao.php');
 echo "<table class='table table-dark table-striped'>
         <thead>
             <tr>
+            <th scope='col'>Responsavel</th>
             <th scope='col'>Código</th>
             <th scope='col'>Data</th>
             <th scope='col'>Movimentação</th>
@@ -18,7 +19,7 @@ echo "<table class='table table-dark table-striped'>
         </thead>
     <tbody>";
 
-$sql = "SELECT DISTINCT pallets.codigo, pallets.data, movimentacao.movimentacao, movimentacao.pallet1, movimentacao.pallet2, movimentacao.pallet3, movimentacao.pallet4, movimentacao.pallet5, movimentacao.pallet6
+$sql = "SELECT DISTINCT pallets.autor, pallets.codigo, pallets.data, movimentacao.movimentacao, movimentacao.pallet1, movimentacao.pallet2, movimentacao.pallet3, movimentacao.pallet4, movimentacao.pallet5, movimentacao.pallet6
         FROM pallets
         JOIN movimentacao ON pallets.id_movimentacao = movimentacao.id"; 
 
@@ -27,6 +28,7 @@ $result = mysqli_query($conexao, $sql);
 if($result){
     while($row = mysqli_fetch_assoc($result)){
         echo "<tr>";
+        echo "<td>" . $row['autor'] . "</td>";
         echo "<td>" . $row['codigo'] . "</td>";
         echo "<td>" . $row['data'] . "</td>";
         if($row['movimentacao'] == 1){

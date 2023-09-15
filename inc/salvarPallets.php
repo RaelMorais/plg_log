@@ -1,6 +1,9 @@
 <?php
 include('conexao.php');
 
+if (isset($_COOKIE["username"])) {
+    $nomeUsuario = $_COOKIE["username"];
+}
 $movimentacao = $_POST['movimentacao'];
 $codigo = $_POST['codigo'];
 $editavel1 = $_POST['editavel1'];
@@ -21,7 +24,7 @@ if ($insertMovimentacao) {
     $movimentacao_id = mysqli_insert_id($conexao);
 
     // Realizar o insert na tabela pallets
-    $sqlPallets = "INSERT INTO pallets (codigo, id_movimentacao, data) VALUES ('$codigo', '$movimentacao_id', NOW())";
+    $sqlPallets = "INSERT INTO pallets (autor, codigo, id_movimentacao, data) VALUES ('$nomeUsuario', '$codigo', '$movimentacao_id', NOW())";
 
     $insertPallets = mysqli_query($conexao, $sqlPallets);
 

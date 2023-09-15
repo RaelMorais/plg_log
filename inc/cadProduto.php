@@ -1,6 +1,8 @@
 <?php
 include('conexao.php');
-
+if (isset($_COOKIE["username"])) {
+    $nomeUsuario = $_COOKIE["username"];
+}
 $cod = $_POST['codigo'];
 $nome = $_POST['nome'];
 $model = $_POST['modelo'];
@@ -22,8 +24,8 @@ if (mysqli_num_rows($verificarQuery) > 0) {
     </script>";
 } else {
     // Se o código não existe, insira o novo produto
-    $query = "INSERT INTO produtos (codigo, nome, modelo, descricao, custo, lucro, preco, volume) 
-    VALUES ('$cod', '$nome', '$model', '$description', '$custo', '$lucro', '$preco', '$vol')";
+    $query = "INSERT INTO produtos (autor, codigo, nome, modelo, descricao, custo, lucro, preco, volume) 
+    VALUES ('$nomeUsuario','$cod', '$nome', '$model', '$description', '$custo', '$lucro', '$preco', '$vol')";
     
     $insert = mysqli_query($conexao, $query);
     mysqli_close($conexao);

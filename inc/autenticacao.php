@@ -14,7 +14,7 @@ if (isset($entrar)) {
       alert('Login e/ou senha incorretos');window.location.href='/src/login.html';</script>";
     die();
   } else {
-    setcookie("username", $name, time() + 100, "/"); // Set the cookie here
+    setcookie("username", $name, time() + 3600, "/"); // Set the cookie here
     header('Location: /src/splash.php');
   }
 }
