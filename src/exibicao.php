@@ -50,4 +50,39 @@ if($result){
 }
 
 echo "</tbody></table>";
+
+echo "<table class='table table-dark table-striped'>
+        <thead>
+            <tr>
+            <th scope='col'>Nome</th>
+            <th scope='col'>Código</th>
+            <th scope='col'>Modelo</th>
+            <th scope='col'>Custo</th>
+            <th scope='col'>Lucro</th>
+            <th scope='col'>Preço</th>
+            <th scope='col'>Volume</th>
+            <th scope='col'>Descrição</th>
+            </tr>
+        </thead>
+    <tbody>";
+    $sql = "SELECT DISTINCT *
+        FROM produtos"; 
+
+$result = mysqli_query($conexao, $sql);
+if($result){
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr>";
+        echo "<td>" . $row['nome'] . "</td>";
+        echo "<td>" . $row['codigo'] . "</td>";
+        echo "<td>" . $row['modelo'] . "</td>";
+        echo "<td>" . $row['custo'] . "</td>";
+        echo "<td>" . $row['lucro'] . "%</td>";
+        echo "<td>" . $row['preco'] . "</td>";
+        echo "<td>" . $row['volume'] . "</td>";
+        echo "<td>" . $row['descricao'] . "</td>";
+        echo "</tr>";
+    }
+} else {
+    echo "Erro na consulta: " . mysqli_error($conexao);
+}
 ?>
