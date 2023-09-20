@@ -1,32 +1,33 @@
 <?php
-if (isset($_COOKIE["username"])) {
-    $nomeUsuario = $_COOKIE["username"];
-} else {
-    header('Location: /src/login.html');
+if (!isset($_COOKIE["username"])) {
+    header("HTTP/1.1 302 Found");
+    header("Location: /src/login.html");
     exit;
+} else {
+    $nomeUsuario = $_COOKIE["username"];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PJL LOG</title>
-    <!--<link rel="icon" type="image/x-icon" href="/assets/images/codigo.png">-->
     <link rel="icon" type="image/x-icon" href="/imagens/Logo_MEIM_1.png">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-    crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="/assets/style/alert_traffic.css">
     <link rel="stylesheet" type="text/css" href="/assets/style/valor_invalido.css">
     <link rel="stylesheet" type="text/css" href="/assets/style/cad.produto.css">
     <script src="/assets/js/rotas.js"></script>
     <script src="/assets/js/controller-soma-sub.js"></script>
-
 </head>
+
 <body>
     <header>
 
@@ -38,13 +39,13 @@ if (isset($_COOKIE["username"])) {
         </a>
         <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Introdução</a>
+                <a class="nav-link active" aria-current="page" href="#">Introdução</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/src/home.php">Home</a>
+                <a class="nav-link" href="/src/home.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Perfil</a>
+                <a class="nav-link" href="#">Perfil</a>
             </li>
-          </ul>
+        </ul>
     </nav>

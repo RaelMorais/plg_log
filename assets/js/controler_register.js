@@ -1,12 +1,9 @@
-const inpCnpj = document.querySelector("#inputCPF");
-const inpCpf = document.querySelector("#inputCNPJ");
+const inpCnpj = document.querySelector("#inputCNPJ");
+const inpCpf = document.querySelector("#inputCPF");
+const radioFisico = document.getElementById("radioFisico");
+const radioJuridico = document.getElementById("radioJuridico");
 
-function habilitacacao(){
-    if (document.getElementById("radioFisico").checked == true) {
-        inpCpf.disabled = true;
-        inpCnpj.disabled = false
-    } else if (document.getElementById("radioJuridico").checked == true) {
-        inpCnpj.disabled = true;
-        inpCpf.disabled = false;
-    }
+function habilitacacao() {
+    inpCnpj.disabled = radioFisico.checked;
+    inpCpf.disabled = radioJuridico.checked;
 }

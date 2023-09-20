@@ -1,39 +1,34 @@
 function maxInputValue(editavelElement) {
-
-    var pal1 = parseInt(document.getElementById('editavel1').textContent);
-    var pal2 = parseInt(document.getElementById('editavel2').textContent);
-    var pal3 = parseInt(document.getElementById('editavel3').textContent);
-    var pal4 = parseInt(document.getElementById('editavel4').textContent);
-    var pal5 = parseInt(document.getElementById('editavel5').textContent);
-    var pal6 = parseInt(document.getElementById('editavel6').textContent);
-
-    const selecao = document.getElementById('movimentacao-hidden').value;
-
-    var palsum = pal1 + pal2 + pal3 + pal4 + pal5 + pal6;
-
-    const inputValue = document.getElementById('inputValueEntrada').value;
+    const inputValueEntrada = document.getElementById('inputValueEntrada').value;
     const inputValueRetirada = document.getElementById('inputValueRetirada').value;
-    var valorAtual = parseInt(editavelElement.textContent);
+    const selecao = document.getElementById('movimentacao-hidden').value;
+    const palsum = getPalletsSum();
 
-    if (selecao == 1) {
-        inputValueToUse = inputValue;
-    } 
-    if (selecao == 2) {
-        inputValueToUse = inputValueRetirada;
-    }
+    const inputValueToUse = selecao === '1' ? inputValueEntrada : inputValueRetirada;
+    const valorAtual = parseInt(editavelElement.textContent);
 
     if (valorAtual < inputValueToUse && palsum < inputValueToUse) {
-        return editavelElement.textContent = valorAtual + 1;
+        editavelElement.textContent = valorAtual + 1;
     } else {
         alert("Valor máximo atingido!");
     }
 }
 
+function minValueLess(editavelElement) {
+    const valorAtual = parseInt(editavelElement.textContent);
 
-function minValueLess(editavelElement){
-    var valorAtual = parseInt(editavelElement.textContent);
-    
     if (valorAtual > 0) {
-      return editavelElement.textContent = valorAtual - 1;
+        editavelElement.textContent = valorAtual - 1;
     }
-}  
+}
+
+function getPalletsSum() {
+    let palsum = 0;
+
+    for (let i = 1; i <= 6; i++) {
+        const pal = parseInt(document.getElementById(`editavel${i}`).textContent);
+        palsum += isNaN(pal) ? 0 : pal;
+    }
+
+    return palsum;
+}

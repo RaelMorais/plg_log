@@ -48,7 +48,8 @@ include_once("../header.php");
                 placeholder="CPF" 
                 name="cpf" 
                 maxlength="11" minlength="11" 
-                required>
+                required
+                disabled>
                 <label for="inputCPF">CPF:</label>
             </div>
 
@@ -59,7 +60,8 @@ include_once("../header.php");
                 placeholder="CNPJ" 
                 name="cnpj"  
                 maxlength="14" minlength="14" 
-                required>
+                required
+                disabled>
                 <label for="inputCNPJ">CNPJ:</label>
             </div>
 

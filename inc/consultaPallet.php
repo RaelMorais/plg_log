@@ -1,14 +1,20 @@
 <?php
 include('conexao.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $valor = $_GET["codigo"];
 
+    // Use prepared statements para evitar SQL injection
     $consulta = "SELECT m.*
-    FROM movimentacao AS m
-    INNER JOIN pallets AS p ON m.id = p.id_movimentacao
-    WHERE p.codigo = '$valor'";
-    $resultado = $conexao->query($consulta);
+                 FROM movimentacao AS m
+                 INNER JOIN pallets AS p ON m.id = p.id_movimentacao
+                 WHERE p.codigo = ?";
+    
+    $stmt = $conexao->prepare($consulta);
+    $stmt->bind_param("s", $valor);
+    $stmt->execute();
+    
+    $resultado = $stmt->get_result();
 
     $movimentacoes = array();
 
@@ -21,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo json_encode(array("erro" => "Nenhuma movimentação encontrada com o código informado."));
     }
 
+    $stmt->close();
     $conexao->close();
 }
 ?>

@@ -1,15 +1,15 @@
 function calcPrice() {
     const custoInput = document.getElementById("floatingCusto");
-    const plucroInput = document.getElementById("floatingLucro");
-    const pprecoInput = document.getElementById("ppreco");
+    const lucroInput = document.getElementById("floatingLucro");
+    const pprecoValue = document.getElementById("pprecoValue");
+    const pprecoHidden = document.getElementById("pprecoHidden");
 
     const custo = parseFloat(custoInput.value);
-    const plucro = parseFloat(plucroInput.value);
+    const lucro = parseFloat(lucroInput.value);
 
-    if (!isNaN(custo) && !isNaN(plucro)) {
-        const lucro = custo * (plucro / 100);
-        const preco = custo + lucro;
+    if (!isNaN(custo) && !isNaN(lucro)) {
+        const preco = custo + (custo * (lucro / 100));
         pprecoValue.textContent = preco.toFixed(2);
-        pprecoHidden.value = preco.toFixed(2)
+        //pprecoHidden.value = preco.toFixed(2);
     }
 }

@@ -1,41 +1,28 @@
 <?php
 include('conexao.php');
 
-if (isset($_COOKIE["username"])) {
-    $nomeUsuario = $_COOKIE["username"];
-}
+$nomeUsuario = isset($_COOKIE["username"]) ? $_COOKIE["username"] : null;
 $movimentacao = $_POST['movimentacao'];
 $codigo = $_POST['codigo'];
-$editavel1 = $_POST['editavel1'];
-$editavel2 = $_POST['editavel2'];
-$editavel3 = $_POST['editavel3'];
-$editavel4 = $_POST['editavel4'];
-$editavel5 = $_POST['editavel5'];
-$editavel6 = $_POST['editavel6'];
+$editaveis = array($_POST['editavel1'], $_POST['editavel2'], $_POST['editavel3'], $_POST['editavel4'], $_POST['editavel5'], $_POST['editavel6']);
 
-// Realizar o insert na tabela movimentacao
 $sqlMovimentacao = "INSERT INTO movimentacao (pallet1, pallet2, pallet3, pallet4, pallet5, pallet6, movimentacao) 
-VALUES ('$editavel1', '$editavel2', '$editavel3', '$editavel4', '$editavel5', '$editavel6', '$movimentacao')";
+VALUES ('" . implode("','", $editaveis) . "', '$movimentacao')";
 
-$insertMovimentacao = mysqli_query($conexao, $sqlMovimentacao);
+if ($conexao->query($sqlMovimentacao)) {
+    $movimentacao_id = $conexao->insert_id;
+    
+    $sqlPallets = "INSERT INTO pallets (autor, codigo, id_movimentacao, data) 
+                   VALUES ('$nomeUsuario', '$codigo', '$movimentacao_id', NOW())";
 
-if ($insertMovimentacao) {
-    // Obter o ID da última inserção
-    $movimentacao_id = mysqli_insert_id($conexao);
-
-    // Realizar o insert na tabela pallets
-    $sqlPallets = "INSERT INTO pallets (autor, codigo, id_movimentacao, data) VALUES ('$nomeUsuario', '$codigo', '$movimentacao_id', NOW())";
-
-    $insertPallets = mysqli_query($conexao, $sqlPallets);
-
-    if ($insertPallets) {
+    if ($conexao->query($sqlPallets)) {
         echo "Inserção bem-sucedida nas tabelas movimentacao e pallets.";
     } else {
-        echo "Erro ao inserir na tabela pallets: " . mysqli_error($conexao);
+        echo "Erro ao inserir na tabela pallets: " . $conexao->error;
     }
 } else {
-    echo "Erro ao inserir na tabela movimentacao: " . mysqli_error($conexao);
+    echo "Erro ao inserir na tabela movimentacao: " . $conexao->error;
 }
 
-mysqli_close($conexao);
+$conexao->close();
 ?>

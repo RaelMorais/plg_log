@@ -1,11 +1,14 @@
 <?php
-if (isset($_COOKIE["username"])) {
-    $nomeUsuario = $_COOKIE["username"];
-} else {
+// Verifique se o cookie de nome de usuário está definido
+if (!isset($_COOKIE["username"])) {
     header('Location: /src/login.html');
     exit;
 }
+
+// Obtenha o nome de usuário do cookie
+$nomeUsuario = $_COOKIE["username"];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

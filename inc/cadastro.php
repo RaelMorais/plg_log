@@ -1,22 +1,26 @@
 <?php
 include('conexao_adm.php');
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $nome = $_POST['nome'];
+  $senha = md5($_POST['senha']);
 
-$senha = MD5($_POST['senha']);
-$nome = $_POST['nome'];
+  // Verifica se o nome de usuário já existe
+  $sqlVerifica = "SELECT username FROM usuarios WHERE username = '$nome'";
+  $selectVerifica = mysqli_query($conexao, $sqlVerifica);
 
-$sql = "SELECT username FROM usuarios WHERE username = '$nome'";
-$select = mysqli_query($conexao,$sql);
-$datas = mysqli_fetch_array($select);
-  $query = "INSERT INTO usuarios (senha,username) VALUES ('$senha','$nome')";
-  $insert = mysqli_query($conexao,$query);
-  mysqli_close($conexao);
+  if (mysqli_num_rows($selectVerifica) > 0) {
+      echo "<script>alert('Nome de usuário já está em uso');window.location.href='/src/cadastro.html'</script>";
+  } else {
+      $sql = "INSERT INTO usuarios (senha, username) VALUES ('$senha', '$nome')";
+      $insert = mysqli_query($conexao, $sql);
 
-  if($insert){
-    echo"<script language='javascript' type='text/javascript'>
-    window.location.href='/src/login.html'</script>";
-  }else{
-    echo"<script language='javascript' type='text/javascript'>
-    alert('Não foi possível cadastrar esse usuário');window.location.href='/src/cadastro.html'</script>";
+      if ($insert) {
+          echo "<script>window.location.href='/src/login.html'</script>";
+      } else {
+          echo "<script>alert('Não foi possível cadastrar esse usuário');window.location.href='/src/cadastro.html'</script>";
+      }
   }
+    mysqli_close($conexao);
+}
 ?>

@@ -6,7 +6,7 @@
     <input type="number" id="inputValueEntrada" name="valorEntrada" min="0">
     <div>
       <button class="btn" onclick="fecharQuantidadeEntrada()">Cancelar</button>
-      <button class="btn" type="button" onclick="verficador()">Confirmar</button>
+      <button class="btn" type="button" onclick="verificador()">Confirmar</button>
     </div>
   </div>
 </div>
