@@ -1,10 +1,12 @@
 <?php
-if (!isset($_COOKIE["username"])) {
+session_start(); // Iniciar a sessão
+
+if (!isset($_SESSION["username"])) {
     header("HTTP/1.1 302 Found");
     header("Location: /src/login.html");
     exit;
 } else {
-    $nomeUsuario = $_COOKIE["username"];
+    $nomeUsuario = $_SESSION["username"];
 }
 ?>
 

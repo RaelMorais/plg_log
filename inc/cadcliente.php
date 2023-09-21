@@ -1,11 +1,17 @@
 <?php
+session_start(); // Iniciar a sessão
+
 include('conexao.php');
 
-if (isset($_COOKIE["username"])) {
-  $nomeUsuario = $_COOKIE["username"];
+if (isset($_SESSION["username"])) {
+    $nomeUsuario = $_SESSION["username"];
+} else {
+    // Se o usuário não estiver autenticado, redirecione para a página de login
+    redirecionar('/src/login.php');
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Resto do seu código permanece o mesmo
     $nome = $_POST['nome'];
     $tipo = $_POST['inlineRadioOptions'];
     $CPF = $_POST['cpf'];

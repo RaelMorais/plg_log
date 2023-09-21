@@ -1,4 +1,6 @@
 <?php
+session_start(); // Iniciar a sessão
+
 include('conexao_adm.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -13,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (mysqli_num_rows($verifica) <= 0) {
             echo "<script>alert('Login e/ou senha incorretos');</script>";
         } else {
-            setcookie("username", $name, time() + 3600, "/");
+            $_SESSION["username"] = $name; // Armazenar o nome de usuário na sessão
+            //setcookie("username", $name, time() + 3600, "/"); // Armazenar o nome de usuário em um cookie válido por 1 hora
             header('Location: /src/splash.php');
             exit();
         }

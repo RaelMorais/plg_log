@@ -1,8 +1,13 @@
 <?php
+session_start(); // Iniciar a sessão
+
 include('conexao.php');
 
-if (isset($_COOKIE["username"])) {
-    $nomeUsuario = $_COOKIE["username"];
+if (isset($_SESSION["username"])) {
+    $nomeUsuario = $_SESSION["username"];
+} else {
+    // Se o usuário não estiver autenticado, redirecione para a página de login
+    redirecionar('/src/login.php');
 }
 
 $cod = $_POST['codigo'];
@@ -14,9 +19,7 @@ $lucro = $_POST['lucro'];
 $vol = $_POST['volume'];
 $preco = $_POST["preco"];
 
-// Verifique se já existe um produto com o mesmo código
-$verificarCodigo = "SELECT codigo FROM produtos WHERE codigo = '$cod'";
-$verificarQuery = mysqli_query($conexao, $verificarCodigo);
+// Resto do seu código permanece o mesmo
 
 if (mysqli_num_rows($verificarQuery) > 0) {
     // Se já existe um produto com o mesmo código, exiba uma mensagem de erro e redirecione

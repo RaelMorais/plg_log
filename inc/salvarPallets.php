@@ -1,7 +1,9 @@
 <?php
+session_start(); // Iniciar a sessão
+
 include('conexao.php');
 
-$nomeUsuario = isset($_COOKIE["username"]) ? $_COOKIE["username"] : null;
+$nomeUsuario = isset($_SESSION["username"]) ? $_SESSION["username"] : null;
 $movimentacao = $_POST['movimentacao'];
 $codigo = $_POST['codigo'];
 $editaveis = array($_POST['editavel1'], $_POST['editavel2'], $_POST['editavel3'], $_POST['editavel4'], $_POST['editavel5'], $_POST['editavel6']);

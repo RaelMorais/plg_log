@@ -1,12 +1,15 @@
 <?php
-// Verifique se o cookie de nome de usuário está definido
-if (!isset($_COOKIE["username"])) {
-    header('Location: /src/login.html');
+session_start(); // Iniciar a sessão
+
+// Verifique se a variável de sessão "username" está definida
+if (!isset($_SESSION["username"])) {
+    header("HTTP/1.1 302 Found");
+    header("Location: /src/login.html");
     exit;
 }
 
-// Obtenha o nome de usuário do cookie
-$nomeUsuario = $_COOKIE["username"];
+// Obtenha o nome de usuário da variável de sessão
+$nomeUsuario = $_SESSION["username"];
 ?>
 
 <!DOCTYPE html>
