@@ -10,6 +10,7 @@ if (!isset($_SESSION["username"])) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,6 +29,7 @@ if (!isset($_SESSION["username"])) {
     <link rel="stylesheet" type="text/css" href="/assets/style/cad.produto.css">
     <script src="/assets/js/rotas.js"></script>
     <script src="/assets/js/controller-soma-sub.js"></script>
+    <script src="/assets/js/verificador_inatividade.js"></script>
 </head>
 
 <body>
