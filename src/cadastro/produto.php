@@ -41,10 +41,11 @@
         </div>
 
         <div class="form-floating mb-3">
-            <label class="form-label" id="pprecoValue">0</label>
             <p id="pprecolabel">Preço:</p>
+            <span class="form-label" id="pprecoValue">0</span>
             <input type="hidden" id="pprecoHidden" name="preco" value="0">
         </div>
+        <hr>
 
         <div class="d-grid gap-2 d-md-block text-center d-flex justify-content-center align-items-center">
             <input type="submit" value="Cadastrar" class="btn btn-danger btn-lg" id="cadastro" />
