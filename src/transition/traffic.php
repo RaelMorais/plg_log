@@ -30,7 +30,6 @@
 <!-- Saida -->
 <script src="/assets/js/saida-controller/alert-saida.js"></script>
 <script src="/assets/js/saida-controller/atualizar-campo.js"></script>
-<script src="/assets/js/saida-controller/pallets-atualizar.js"></script>
 <script src="/assets/js/saida-controller/quantificador-saida.js"></script>
 <script src="/assets/js/saida-controller/verificador.js"></script>
 

@@ -1,16 +1,23 @@
 function maxInputValue(editavelElement) {
-    const inputValueEntrada = document.getElementById('inputValueEntrada').value;
-    const inputValueRetirada = document.getElementById('inputValueRetirada').value;
-    const selecao = document.getElementById('movimentacao-hidden').value;
+    const inputValueEntrada = parseInt(document.getElementById('inputValueEntrada').value);
+    const inputValueRetirada = parseInt(document.getElementById('inputValueRetirada').value);
+    const movi = parseInt(document.getElementById('movimentacao-hidden').value);
     const palsum = getPalletsSum();
 
-    const inputValueToUse = selecao === '1' ? inputValueEntrada : inputValueRetirada;
     const valorAtual = parseInt(editavelElement.textContent);
 
-    if (valorAtual < inputValueToUse && palsum < inputValueToUse) {
-        editavelElement.textContent = valorAtual + 1;
+    if (movi === 1) {
+        if (valorAtual < inputValueEntrada && palsum < inputValueEntrada) {
+            editavelElement.textContent = valorAtual + 1;
+        } else {
+            alert("Valor máximo atingido!");
+        }
     } else {
-        alert("Valor máximo atingido!");
+        if (valorAtual >= 0 && palsum < inputValueRetirada) {
+            editavelElement.textContent = valorAtual + 1;
+        } else {
+            alert("Valor mínimo atingido!");
+        }
     }
 }
 
