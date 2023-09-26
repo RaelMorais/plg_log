@@ -5,7 +5,7 @@ function verficador_saida(){
         inputValueRetirada.classList.add("input-error");
         return;
     }else{
-        showpallets()
+        showPallets()
     }
     inputValueRetirada.classList.remove("input-error");
 }
