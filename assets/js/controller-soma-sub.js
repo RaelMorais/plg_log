@@ -16,7 +16,7 @@ function maxInputValue(editavelElement) {
         if (valorAtual >= 0 && palsum < inputValueRetirada) {
             editavelElement.textContent = valorAtual + 1;
         } else {
-            alert("Valor mínimo atingido!");
+            alert("Valor máximo atingido!");
         }
     }
 }

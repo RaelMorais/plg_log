@@ -33,7 +33,8 @@ async function showPallets() {
                             atualizarQtdProdt('qtdProdt5', totalPallet5);
                             atualizarQtdProdt('qtdProdt6', totalPallet6);
                         
-                        /*if (movi === '2') {
+                        /*
+                        if (movi === '2') {
                             document.getElementById("editavel1").textContent = totalPallet1;
                             document.getElementById("editavel2").textContent = totalPallet2;
                             document.getElementById("editavel3").textContent = totalPallet3;
