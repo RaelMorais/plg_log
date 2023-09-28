@@ -6,7 +6,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 
 # Configurações do e-mail
-remetente = "remetente@gmail.com"
+remetente = "mycone"
 senha = "senha_do_remetente"
 destinatario = "destinatario@example.com"
 assunto = "Envio de arquivo"
