@@ -1,7 +1,6 @@
 import mysql.connector
 import csv
 
-# Conectar ao banco de dados MySQL
 conexao = mysql.connector.connect(
     host='localhost',
     user='root',
@@ -11,26 +10,27 @@ conexao = mysql.connector.connect(
 
 cursor = conexao.cursor()
 
-SQL = f'SELECT DISTINCT pallets.autor, pallets.codigo, pallets.data, movimentacao.movimentacao, movimentacao.pallet1, movimentacao.pallet2, movimentacao.pallet3, movimentacao.pallet4, movimentacao.pallet5, movimentacao.pallet6 FROM pallets JOIN movimentacao ON pallets.id_movimentacao = movimentacao.id'
-cursor.execute(SQL)
-result = cursor.fetchall()
+SQL_movimentacao = f'SELECT DISTINCT pallets.autor , pallets.codigo, pallets.data, movimentacao.movimentacao, movimentacao.pallet1, movimentacao.pallet2, movimentacao.pallet3, movimentacao.pallet4, movimentacao.pallet5, movimentacao.pallet6 FROM pallets JOIN movimentacao ON pallets.id_movimentacao = movimentacao.id'
+cursor.execute(SQL_movimentacao)
+result_movimentacao = cursor.fetchall()
 
-# Criar um arquivo CSV para o relatório
-with open('relatorio.csv', 'w', newline='') as csvfile:
-    fieldnames = ['Autor', 'Código', 'Data', 'Movimentação', 'Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']
+SQL_produto = 'SELECT codigo, nome, modelo, descricao, custo, lucro, preco, volume FROM produtos;'
+cursor.execute(SQL_produto)
+result_produto = cursor.fetchall()
+
+with open('relatorio_movimentacao.csv', 'w', newline='') as csvfile:
+    fieldnames = ['Responsavel', 'Codigo Pallet', 'Data', 'Movimentacao', 'Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-    # Escrever o cabeçalho do CSV
+    
     writer.writeheader()
 
-    # Escrever os dados no CSV
-    for row in result:
-        autor, codigo, data, movimentacao, pallet1, pallet2, pallet3, pallet4, pallet5, pallet6 = row
+    for row in result_movimentacao:
+        responsavel, codigo_pallet, data, movimentacao, pallet1, pallet2, pallet3, pallet4, pallet5, pallet6 = row
         writer.writerow({
-            'Autor': autor,
-            'Código': codigo,
+            'Responsavel': responsavel,
+            'Codigo Pallet': codigo_pallet,
             'Data': data,
-            'Movimentação': movimentacao,
+            'Movimentacao': movimentacao,
             'Pallet1': pallet1,
             'Pallet2': pallet2,
             'Pallet3': pallet3,
@@ -39,7 +39,25 @@ with open('relatorio.csv', 'w', newline='') as csvfile:
             'Pallet6': pallet6
         })
 
-print("Relatório gerado com sucesso!")
+with open('relatorio_produto.csv', 'w', newline='') as csvfile:
+    fieldnames_produto = ['Codigo', 'Nome', 'Modelo', 'Descricao', 'Custo', 'Lucro', 'Preco', 'Volume']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames_produto)
+    writer.writeheader()
+
+    for row_produto in result_produto:
+        codigo, nome, modelo, descricao, custo, lucro, preco, volume = row_produto
+        writer.writerow({
+            'Codigo': codigo,
+            'Nome': nome,
+            'Modelo': modelo,
+            'Descricao': descricao,
+            'Custo': custo,
+            'Lucro': lucro,
+            'Preco': preco,
+            'Volume': volume
+        })
+
+print("Relatórios gerados com sucesso!")
 
 cursor.close()
 conexao.close()

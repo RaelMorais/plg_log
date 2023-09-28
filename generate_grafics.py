@@ -1,68 +1,90 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import xlsxwriter
-import io
+import numpy as np
+from datetime import datetime
+from openpyxl import Workbook
+from openpyxl.styles import NamedStyle, Font, PatternFill
+from openpyxl.drawing.image import Image
 
-# Ler o arquivo CSV com encoding 'latin1'
-df = pd.read_csv('relatorio.csv', encoding='latin1')
+# Lê o arquivo CSV com o encoding 'utf-8' e ignore os caracteres inválidos
+try:
+    df_movimentacao = pd.read_csv('relatorio_movimentacao.csv', encoding='utf-8')
+    df_produto = pd.read_csv('relatorio_produto.csv', encoding='utf-8')
+except UnicodeDecodeError:
+    df_movimentacao = pd.read_csv('relatorio_movimentacao.csv', encoding='ISO-8859-1')
+    df_produto = pd.read_csv('relatorio_produto.csv', encoding='ISO-8859-1')
 
-# Separar movimentações em entrada e saída
-entrada = df[df['Movimentação'] == 1]
-saida = df[df['Movimentação'] == 2]
+df_movimentacao = df_movimentacao.rename(columns={'Responsavel': 'Responsavel', 'Codigo Pallet': 'Codigo'})
 
-# Agrupar os dados por código de produto e somar as quantidades para entrada e saída
-entrada_grouped = entrada.groupby('Código')[['Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']].sum()
-saida_grouped = saida.groupby('Código')[['Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']].sum()
+df_movimentacao = df_movimentacao.drop(['Responsavel'], axis=1)
 
-# Combinar os dataframes de entrada e saída
-merged = pd.merge(entrada_grouped, saida_grouped, on='Código', how='outer').fillna(0)
+dfs_por_codigo = {codigo: grupo for codigo, grupo in df_movimentacao.groupby('Codigo')}
 
-# Calcular a quantidade total de movimentação (entrada - saída)
-merged['Total'] = merged['Pallet1_x'] + merged['Pallet2_x'] + merged['Pallet3_x'] + merged['Pallet4_x'] + merged['Pallet5_x'] + merged['Pallet6_x'] - \
-                 (merged['Pallet1_y'] + merged['Pallet2_y'] + merged['Pallet3_y'] + merged['Pallet4_y'] + merged['Pallet5_y'] + merged['Pallet6_y'])
+codigo_para_nome = dict(zip(df_produto['Codigo'], df_produto['Nome']))
 
-# Calcular a quantidade total de entrada e saída
-merged['Total_Entrada'] = merged['Pallet1_x'] + merged['Pallet2_x'] + merged['Pallet3_x'] + merged['Pallet4_x'] + merged['Pallet5_x'] + merged['Pallet6_x']
-merged['Total_Saída'] = merged['Pallet1_y'] + merged['Pallet2_y'] + merged['Pallet3_y'] + merged['Pallet4_y'] + merged['Pallet5_y'] + merged['Pallet6_y']
+totais_entrada = []
+totais_saida = []
 
-# Criar um gráfico de barras empilhadas
+nomes_produtos = []
+
+for codigo, df_codigo in dfs_por_codigo.items():
+
+    df_entrada = df_codigo[df_codigo['Movimentacao'] == 1]
+    df_saida = df_codigo[df_codigo['Movimentacao'] == 2]
+
+    colunas_pallet = ['Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']
+    total_entrada = df_entrada[colunas_pallet].sum(axis=1).sum()
+    total_saida = df_saida[colunas_pallet].sum(axis=1).sum()
+
+    totais_entrada.append(total_entrada)
+    totais_saida.append(total_saida)
+
+    nomes_produtos.append(codigo_para_nome.get(codigo, 'Desconhecido'))
+
+bar_width = 0.35
+index = np.arange(len(dfs_por_codigo))
+
 plt.figure(figsize=(10, 6))
-plt.bar(merged.index, merged['Total_Entrada'], color='green', label='Entrada')
-plt.bar(merged.index, merged['Total_Saída'], color='red', label='Saída', bottom=merged['Total_Entrada'])
-plt.xlabel('Código do Produto')
-plt.ylabel('Quantidade de Movimentação')
-plt.title('Quantidade de Movimentação por Código de Produto')
-plt.xticks(rotation=45)  # Rotaciona os rótulos do eixo x para melhor legibilidade
+plt.bar(index, totais_entrada, label='Entrada', width=bar_width)
+plt.bar(index + bar_width, totais_saida, label='Saida', width=bar_width)
+plt.xlabel('Codigo')
+plt.ylabel('Total')
+plt.title('Comparacao de Entrada e Saida por Codigo')
+plt.xticks(index + bar_width / 2, nomes_produtos)
 plt.legend()
-
-# Salvar o gráfico como uma imagem em memória
-img_buf = io.BytesIO()
+plt.xticks(rotation=90)
 plt.tight_layout()
-plt.savefig(img_buf, format='png')
-img_buf.seek(0)
 
-# Criar um arquivo XLSX com os dados e o gráfico
-with pd.ExcelWriter('relatorio_com_grafico.xlsx', engine='xlsxwriter') as writer:
-    df.to_excel(writer, sheet_name='Relatório', index=False)
-    worksheet = writer.sheets['Relatório']
+# Obtenha a data atual no formato 'ddmmyyyy'
+data_atual = datetime.now().strftime('%d%m%Y')
 
-    # Inserir o gráfico na planilha XLSX
-    chart = writer.book.add_chart({'type': 'column'})
-    chart.add_series({'categories': f'=Relatório!$A$2:$A{len(merged) + 1}',
-                      'values': f'=Relatório!$B$2:$B{len(merged) + 1}',
-                      'name': 'Entrada'})
-    chart.add_series({'categories': f'=Relatório!$A$2:$A{len(merged) + 1}',
-                      'values': f'=Relatório!$C$2:$C{len(merged) + 1}',
-                      'name': 'Saída'})
+# Salve o grafico em uma imagem
+nome_arquivo_grafico = f'grafico_{data_atual}.png'
+plt.savefig(nome_arquivo_grafico)
 
-    chart.set_title({'name': 'Quantidade de Movimentação por Código de Produto'})
-    chart.set_x_axis({'name': 'Código do Produto'})
-    chart.set_y_axis({'name': 'Quantidade de Movimentação'})
+# Salve o DataFrame com datas em um arquivo 'relatorio_data.xlsx'
+nome_arquivo_excel = f'relatorio_{data_atual}.xlsx'
+with pd.ExcelWriter(nome_arquivo_excel, engine='openpyxl') as writer:
+    # Salve o DataFrame de movimentação
+    df_movimentacao.to_excel(writer, sheet_name=f'movimentacao', index=False)
+    workbook = writer.book
+    worksheet = writer.sheets[f'movimentacao']
 
-    worksheet.insert_chart('E2', chart)
+    for col in worksheet.iter_cols(min_col=1, max_col=1, min_row=2, max_row=len(df_movimentacao) + 1):
+        for cell in col:
+            cell.number_format = '0'
+    
+    # Adicione o grafico a planilha de movimentacao
+    img = Image(nome_arquivo_grafico)
+    img.width = 600
+    img.height = 400
+    worksheet.add_image(img, 'E2')
 
-    # Inserir o gráfico como uma imagem na planilha XLSX
-    image_sheet = writer.book.add_worksheet('Gráfico')
-    image_sheet.insert_image('A2', 'grafico.png', {'x_offset': 5, 'y_offset': 5})
-
-print("Relatório com gráfico gerado e salvo como relatorio_com_grafico.xlsx!")
+    df_produto.to_excel(writer, sheet_name=f'produto', index=False)
+    worksheet = writer.sheets[f'produto']
+    
+    for col in worksheet.iter_cols(min_col=1, max_col=1, min_row=2, max_row=len(df_produto) + 1):
+        for cell in col:
+            cell.number_format = '0'
+    
+print("Relatorio gerado com sucesso!")
