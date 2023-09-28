@@ -5,14 +5,23 @@ from datetime import datetime
 from openpyxl import Workbook
 from openpyxl.styles import NamedStyle, Font, PatternFill
 from openpyxl.drawing.image import Image
+import os
+
+# Obtenha o diretório atual do script
+diretorio_script = os.path.dirname(os.path.abspath(__file__))
+
+caminho_relatorio_movimentacao = os.path.join(diretorio_script, 'Relatorios', 'CSV', 'relatorio_movimentacao.csv')
+caminho_relatorio_produto = os.path.join(diretorio_script, 'Relatorios', 'CSV', 'relatorio_produto.csv')
+diretorio_Grafico = os.path.join(diretorio_script, 'Relatorios', 'Graficos')
+diretorio_Relatorio = os.path.join(diretorio_script, 'Relatorios')
 
 # Lê o arquivo CSV com o encoding 'utf-8' e ignore os caracteres inválidos
 try:
-    df_movimentacao = pd.read_csv('relatorio_movimentacao.csv', encoding='utf-8')
-    df_produto = pd.read_csv('relatorio_produto.csv', encoding='utf-8')
+    df_movimentacao = pd.read_csv(caminho_relatorio_movimentacao, encoding='utf-8')
+    df_produto = pd.read_csv(caminho_relatorio_produto, encoding='utf-8')
 except UnicodeDecodeError:
-    df_movimentacao = pd.read_csv('relatorio_movimentacao.csv', encoding='ISO-8859-1')
-    df_produto = pd.read_csv('relatorio_produto.csv', encoding='ISO-8859-1')
+    df_movimentacao = pd.read_csv(caminho_relatorio_movimentacao, encoding='ISO-8859-1')
+    df_produto = pd.read_csv(caminho_relatorio_produto, encoding='ISO-8859-1')
 
 df_movimentacao = df_movimentacao.rename(columns={'Responsavel': 'Responsavel', 'Codigo Pallet': 'Codigo'})
 
@@ -58,14 +67,13 @@ plt.tight_layout()
 # Obtenha a data atual no formato 'ddmmyyyy'
 data_atual = datetime.now().strftime('%d%m%Y')
 
-# Salve o grafico em uma imagem
-nome_arquivo_grafico = f'grafico_{data_atual}.png'
+# Salve o grafico em uma imagem na pasta de gráficos
+nome_arquivo_grafico = os.path.join(diretorio_Grafico, f'grafico_{data_atual}.png')
 plt.savefig(nome_arquivo_grafico)
 
-# Salve o DataFrame com datas em um arquivo 'relatorio_data.xlsx'
-nome_arquivo_excel = f'relatorio_{data_atual}.xlsx'
+# Salve o DataFrame com datas em um arquivo 'relatorio_data.xlsx' na pasta de relatórios
+nome_arquivo_excel = os.path.join(diretorio_Relatorio, f'relatorio_{data_atual}.xlsx')
 with pd.ExcelWriter(nome_arquivo_excel, engine='openpyxl') as writer:
-    # Salve o DataFrame de movimentação
     df_movimentacao.to_excel(writer, sheet_name=f'movimentacao', index=False)
     workbook = writer.book
     worksheet = writer.sheets[f'movimentacao']

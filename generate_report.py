@@ -1,5 +1,6 @@
 import mysql.connector
 import csv
+import os
 
 conexao = mysql.connector.connect(
     host='localhost',
@@ -18,7 +19,15 @@ SQL_produto = 'SELECT codigo, nome, modelo, descricao, custo, lucro, preco, volu
 cursor.execute(SQL_produto)
 result_produto = cursor.fetchall()
 
-with open('relatorio_movimentacao.csv', 'w', newline='') as csvfile:
+# Obtenha o diretório atual do script
+diretorio_script = os.path.dirname(os.path.abspath(__file__))
+
+# Caminhos relativos aos relatórios
+caminho_relatorio_movimentacao = os.path.join(diretorio_script, 'Relatorios/CSV/relatorio_movimentacao.csv')
+caminho_relatorio_produto = os.path.join(diretorio_script, 'Relatorios/CSV/relatorio_produto.csv')
+print(caminho_relatorio_movimentacao)
+
+with open(caminho_relatorio_movimentacao, 'w', newline='') as csvfile:
     fieldnames = ['Responsavel', 'Codigo Pallet', 'Data', 'Movimentacao', 'Pallet1', 'Pallet2', 'Pallet3', 'Pallet4', 'Pallet5', 'Pallet6']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     
@@ -39,7 +48,7 @@ with open('relatorio_movimentacao.csv', 'w', newline='') as csvfile:
             'Pallet6': pallet6
         })
 
-with open('relatorio_produto.csv', 'w', newline='') as csvfile:
+with open(caminho_relatorio_produto, 'w', newline='') as csvfile:
     fieldnames_produto = ['Codigo', 'Nome', 'Modelo', 'Descricao', 'Custo', 'Lucro', 'Preco', 'Volume']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames_produto)
     writer.writeheader()
