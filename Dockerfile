@@ -42,6 +42,16 @@ WORKDIR /app
 # Copiar o arquivo de requisitos do Python
 COPY requirements.txt .
 
+# Crie o diretório /etc/phpmyadmin
+RUN mkdir -p /etc/phpmyadmin
+
+
+# Crie o diretório /etc/phpmyadmin e copie o arquivo de configuração
+#RUN mkdir -p /etc/phpmyadmin
+#COPY config.inc.php /etc/phpmyadmin/config.inc.php
+
+#RUN chmod 600 /etc/phpmyadmin/config.inc.php
+#RUN chown www-data:www-data /etc/phpmyadmin/config.inc.php
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
