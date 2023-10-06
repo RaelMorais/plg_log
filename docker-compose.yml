@@ -12,17 +12,13 @@ services:
             - ./bd:/docker-entrypoint-initdb.d
         environment:
             MYSQL_ROOT_PASSWORD: 32130
-            MYSQL_DATABASE: plg_log
-            MYSQL_DATABASE_1: plg_log_adm
+            MYSQL_DATABASE_1: plg_log
+            MYSQL_DATABASE_2: plg_log_adm
             MYSQL_USER: adm_plg
             MYSQL_PASSWORD: adm123
-        networks:
-            - plglog
 
     php:
-        build:
-            context: .
-            dockerfile: Dockerfile
+        build: .
         container_name: php_plg
         image: php:8.0.19
         restart: always
@@ -32,42 +28,26 @@ services:
             - .:/var/www/html
         ports:
             - '8080:80'
-        links:
+        depends_on:
             - mysql
-        networks:
-            - plglog
-        mem_limit: 512M
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
         container_name: phpmyadmin_plg
-        links:
-            - mysql
         ports:
-            - 8081:80
+            - '8081:80'
         environment:
             PMA_HOST: mysql
             PMA_PORT: 3307
             PMA_USER: adm_plg
             PMA_PASSWORD: adm123
             PMA_ARBITRARY: 1
-        volumes:
-            - /etc/php/8.0/apache2/php.ini
-        networks:
-            - plglog
         depends_on:
             - mysql
     
     python:
-        build:
-            context: .
-            dockerfile: Dockerfile
+        build: .
         container_name: python_plg
         restart: always
         volumes:
             - .:/app
-        networks:
-            - plglog
-
-networks:
-    plglog:

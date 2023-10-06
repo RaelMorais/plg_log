@@ -1,5 +1,5 @@
 # Use a imagem do Ubuntu como base
-FROM ubuntu:latest
+FROM ubuntu:20.04
 
 # Configurar o fuso horário para America/Sao_Paulo (Horário de Brasília)
 ENV TZ=America/Sao_Paulo
@@ -27,8 +27,8 @@ RUN echo "ServerName PLGlog" >> /etc/apache2/apache2.conf && \
 # Criar o diretório /var/www/html
 RUN mkdir -p /var/www/html
 
-# Copiar o arquivo de configuração personalizado do PHP
-#COPY custom-php.ini /etc/php/8.0/apache2/php.ini
+# Copiar o arquivo de configuração personalizado do PHP (se necessário)
+# COPY custom-php.ini /etc/php/8.0/apache2/php.ini
 
 # Instalar Python3 e pip3
 RUN apt-get install -yqq python3-pip
@@ -43,12 +43,12 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Crie o diretório /etc/phpmyadmin
-#RUN mkdir -p /etc/phpmyadmin
+RUN mkdir -p /etc/phpmyadmin
 
-#COPY config.inc.php /etc/phpmyadmin/config.inc.php
+# COPY config.inc.php /etc/phpmyadmin/config.inc.php (se necessário)
 
-#RUN chmod 600 /etc/phpmyadmin/config.inc.php
-#RUN chown www-data:www-data /etc/phpmyadmin/config.inc.php
+# RUN chmod 600 /etc/phpmyadmin/config.inc.php (se necessário)
+# RUN chown www-data:www-data /etc/phpmyadmin/config.inc.php (se necessário)
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
