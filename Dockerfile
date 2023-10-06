@@ -28,7 +28,7 @@ RUN echo "ServerName PLGlog" >> /etc/apache2/apache2.conf && \
 RUN mkdir -p /var/www/html
 
 # Copiar o arquivo de configuração personalizado do PHP
-COPY custom-php.ini /etc/php/8.0/apache2/php.ini
+#COPY custom-php.ini /etc/php/8.0/apache2/php.ini
 
 # Instalar Python3 e pip3
 RUN apt-get install -yqq python3-pip
@@ -43,11 +43,8 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Crie o diretório /etc/phpmyadmin
-RUN mkdir -p /etc/phpmyadmin
-
-
-# Crie o diretório /etc/phpmyadmin e copie o arquivo de configuração
 #RUN mkdir -p /etc/phpmyadmin
+
 #COPY config.inc.php /etc/phpmyadmin/config.inc.php
 
 #RUN chmod 600 /etc/phpmyadmin/config.inc.php

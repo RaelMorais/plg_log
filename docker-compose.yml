@@ -52,7 +52,7 @@ services:
             PMA_PASSWORD: adm123
             PMA_ARBITRARY: 1
         volumes:
-            - ./config.inc.php:/etc/phpmyadmin/config.inc.php
+            - /etc/php/8.0/apache2/php.ini
         networks:
             - plglog
         depends_on:
