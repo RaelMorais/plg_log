@@ -6,6 +6,6 @@ function verificador() {
         return;
     }
 
-    showpallets();
+    showPallets();
     inputValueEntrada.classList.remove("input-error");
 }

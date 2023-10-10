@@ -44,7 +44,7 @@
         </div>
 
         <div>
-            <button class="btn" onclick="fecharAlertaConfirmEntrada()">Cancelar</button>
+            <button class="btn" onclick="toggleQuantidadeEntrada(false)">Cancelar</button>
             <button class="btn" type="submit" onclick="toggleQuantidadeEntrada(true)">Confirmar</button>
         </div>
 

@@ -45,8 +45,3 @@ CREATE TABLE `movimentacao` (
 );
 
 ALTER TABLE `pallets` ADD CONSTRAINT `pallets_fk0` FOREIGN KEY (`id_movimentacao`) REFERENCES `movimentacao`(`id`);
-
-
-
-
-

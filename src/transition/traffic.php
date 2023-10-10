@@ -30,12 +30,10 @@
 <!-- Saida -->
 <script src="/assets/js/saida-controller/alert-saida.js"></script>
 <script src="/assets/js/saida-controller/atualizar-campo.js"></script>
-<script src="/assets/js/saida-controller/pallets-atualizar.js"></script>
 <script src="/assets/js/saida-controller/quantificador-saida.js"></script>
 <script src="/assets/js/saida-controller/verificador.js"></script>
 
 <script src="/assets/js/max-and-min-pallet.js"></script>
-<!--<script src="/assets/js/controleSaida.js"></script>-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" 
     crossorigin="anonymous">

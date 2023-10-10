@@ -1,0 +1,31 @@
+# Use a imagem do Ubuntu como base
+FROM ubuntu:20.04
+
+# Configurar o fuso horário para America/Sao_Paulo (Horário de Brasília)
+ENV TZ=America/Sao_Paulo
+
+# Definir a variável de ambiente DEBIAN_FRONTEND para noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instale as dependências do Python e ferramentas adicionais
+RUN apt-get update -yqq && apt-get install -yqq \
+    python3 \
+    python3-pip && \
+    apt-get clean
+
+# Definir o diretório de trabalho para o aplicativo Python
+WORKDIR /app
+
+# Copiar o arquivo de requisitos do Python
+COPY requirements.txt .
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copiar o código-fonte do aplicativo Python
+COPY . .
+
+# Expor a porta 80 para o Apache (isso pode ser removido se não for necessário para o serviço Python)
+EXPOSE 80
+
+# Comando para iniciar o serviço Python (ajuste conforme necessário)
+CMD ["python3", "app.py"]
