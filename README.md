@@ -1,5 +1,5 @@
 # plg_log
-Ao resto dos colegas de trabalho (vabundos) segue-se os comandos para executar o docker-compose.yml
+Ao resto dos colegas de trabalho (voce sabe que isso fica né genio) segue-se os comandos para executar o docker-compose.yml
 
 sudo docker-compose up -d <br>
 sudo docker-compose build <br>
