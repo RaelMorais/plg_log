@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $senhaHash = password_hash($senhaComSalt, PASSWORD_BCRYPT);
 
         // Inserir o usuário no banco de dados
-        $sql = "INSERT INTO usuarios (senha, salt, username) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO usuarios (senha, salt, username, privilegio) VALUES (?, ?, ?, 1)";
         $stmt = mysqli_prepare($conexao, $sql);
         mysqli_stmt_bind_param($stmt, "sss", $senhaHash, $salt, $nome);
         $insert = mysqli_stmt_execute($stmt);

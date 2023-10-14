@@ -1,3 +1,7 @@
+CREATE DATABASE plg_log;
+
+USE plg_log;
+
 CREATE TABLE `clientes` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`autor` INT NOT NULL,
