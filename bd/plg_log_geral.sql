@@ -4,7 +4,7 @@ USE plg_log;
 
 CREATE TABLE `clientes` (
 	`id` INT NOT NULL AUTO_INCREMENT,
-	`autor` INT NOT NULL,
+	`autor` varchar(255) NOT NULL,
 	`nome` varchar(255) NOT NULL,
 	`tipo` varchar(2) NOT NULL,
 	`cpf` varchar(11),
