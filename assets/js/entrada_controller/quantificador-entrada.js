@@ -7,3 +7,7 @@ function toggleQuantidadeEntrada(show) {
         alertQuantInput.style.display = "none";
     }
 }
+
+function fecharQuantidadeEntrada(){
+    document.getElementById("alertQuantInput").style.display = "none";
+}

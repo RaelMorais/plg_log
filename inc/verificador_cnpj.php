@@ -11,7 +11,7 @@ function validaCNPJ($cnpj = null)
     $cnpj = str_pad($cnpj, 14, '0', STR_PAD_LEFT);
     $repeticoes = array('00000000000000', '11111111111111', '22222222222222', '33333333333333', '44444444444444', '55555555555555', '66666666666666', '77777777777777', '88888888888888', '99999999999999');
     // Verifica se nenhuma das sequências invalidas abaixo foi digitada. Caso afirmativo, retorna falso
-    if (in_array($$cnpj, $repeticoes)) {
+    if (in_array($cnpj, $repeticoes)) {
         return false;
     } else {
         // Calcula os digitos verificadores para verificar se o CNPJ é válido

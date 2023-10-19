@@ -40,3 +40,7 @@ function atualizarCampos(detalhes) {
 
     document.getElementById("codigo-hidden").value = detalhes.codigo;
 }
+
+function fecharAlertaConfirmEntrada() {
+    document.getElementById("alertConfirmEntrada").style.display = "none";
+}
