@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             redirecionar('/src/home.php');
         } else {
             echo "<script>alert('Não foi possível cadastrar este cliente');</script>";
+            redirecionar('/src/home.php');
             //redirecionar('/src/cadastro/cliente.php');
         }
     }

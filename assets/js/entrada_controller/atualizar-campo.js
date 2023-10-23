@@ -44,3 +44,7 @@ function atualizarCampos(detalhes) {
 function fecharAlertaConfirmEntrada() {
     document.getElementById("alertConfirmEntrada").style.display = "none";
 }
+
+function fecharAlertaConfirmSaida(){
+    window.location.href = "/src/transition/traffic.php"
+}

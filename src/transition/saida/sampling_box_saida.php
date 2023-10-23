@@ -42,7 +42,7 @@
         </div>
 
         <div>
-          <button class="btn" onclick="fecharAlertaConfirmSaida()">Cancelar</button>
+          <button class="btn" type="submit" onclick="fecharAlertaConfirmSaida()">Cancelar</button>
           <button class="btn" type="submit" onclick="MostrarquantidadeSaida()">Confirmar</button>
         </div>
 

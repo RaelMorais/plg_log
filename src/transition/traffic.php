@@ -11,13 +11,13 @@
 </article>
 
 <?php 
-    include("entrada/buscaInput.php");
-    include("saida/buscaExit.php");
-    include("entrada/sampling_box.php");
-    include("saida/sampling_box_saida.php");
-    include("entrada/quantificadorEnt.php");
-    include("saida/quantificadorSaida.php");
-    include("entrada/pallets.php");
+    include_once("entrada/buscaInput.php");
+    include_once("saida/buscaExit.php");
+    include_once("entrada/sampling_box.php");
+    include_once("saida/sampling_box_saida.php");
+    include_once("entrada/quantificadorEnt.php");
+    include_once("saida/quantificadorSaida.php");
+    include_once("entrada/pallets.php");
 ?>
 
 <!-- Entrada -->

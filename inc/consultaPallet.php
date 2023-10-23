@@ -5,10 +5,10 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $valor = $_GET["codigo"];
 
     // Use prepared statements para evitar SQL injection
-    $consulta = "SELECT m.*
-                 FROM movimentacao AS m
-                 INNER JOIN pallets AS p ON m.id = p.id_movimentacao
-                 WHERE p.codigo = ?";
+    $consulta = 
+    "SELECT m.* FROM movimentacao AS m
+    INNER JOIN pallets AS p ON m.id = p.id_movimentacao
+    WHERE p.codigo = ?";
     
     $stmt = $conexao->prepare($consulta);
     $stmt->bind_param("s", $valor);
