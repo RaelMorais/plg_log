@@ -5,9 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $valor = $_GET["valor"];
 
     // Use prepared statements para evitar SQL injection
-    $consulta = "SELECT *
-                 FROM produtos
-                 WHERE codigo = ? OR nome = ?";
+    $consulta = "SELECT * FROM produtos WHERE codigo = ? OR nome = ?";
     
     $stmt = $conexao->prepare($consulta);
     $stmt->bind_param("ss", $valor, $valor);
@@ -24,5 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
     $stmt->close();
     $conexao->close();
+    
 }
 ?>

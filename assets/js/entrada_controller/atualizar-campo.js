@@ -13,11 +13,10 @@ async function mostrarAlertaConfirmEntrada() {
         const response = await fetch(`/inc/consulta.php?valor=${codigo}`);
 
         if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
+            throw new Error(`Erro na requisição: ${response.status}`); 
         }
 
         const detalhes = await response.json();
-
         if (!detalhes || Object.keys(detalhes).length === 0) {
             alert("Não foi possível encontrar esse produto cadastrado.");
             window.location.href = 'src/transition/traffic.php';

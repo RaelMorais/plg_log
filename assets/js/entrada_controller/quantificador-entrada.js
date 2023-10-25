@@ -5,7 +5,6 @@ function toggleQuantidadeEntrada(show) {
         alertQuantInput.style.display = "flex";
     } else {
         alertQuantInput.style.display = "none";
-        window.location.href = "/src/transition/traffic.php";
     }
 }
 
