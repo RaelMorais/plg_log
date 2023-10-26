@@ -1,5 +1,5 @@
 async function showPallets() {
-    toggleQuantidadeEntrada(false);
+    fecharQuantidadeEntrada();
     var codigo = document.getElementById("codigo-hidden").value;
     const movi = document.getElementById("movimentacao-hidden").value;
 
