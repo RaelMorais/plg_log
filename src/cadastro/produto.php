@@ -42,7 +42,7 @@
 
         <div class="form-floating mb-3">
             <p id="pprecolabel">Preço:</p>
-            <span class="form-label" id="pprecoValue">0</span>
+            <span class="form-label" name="preco" id="pprecoValue">0</span>
             <input type="hidden" id="pprecoHidden" name="preco" value="0">
         </div>
         <hr>

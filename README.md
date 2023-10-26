@@ -9,5 +9,6 @@ GRANT ALL PRIVILEGES ON plg_log.* TO 'adm_plg'@'%'; <br>
 GRANT ALL PRIVILEGES ON plg_log_adm.* TO 'adm_plg'@'%'; <br>
 FLUSH PRIVILEGES; <br>
 
+source /docker-entrypoint-initdb.d/init.sql <br>
 source /docker-entrypoint-initdb.d/plg_log_adm.sql <br>
 source /docker-entrypoint-initdb.d/plg_log_geral.sql

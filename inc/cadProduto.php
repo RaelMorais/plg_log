@@ -3,13 +3,6 @@ session_start(); // Iniciar a sessão
 
 include('conexao.php');
 
-if (isset($_SESSION["username"])) {
-    $nomeUsuario = $_SESSION["username"];
-} else {
-    // Se o usuário não estiver autenticado, redirecione para a página de login
-    redirecionar('/src/login.php');
-}
-
 $cod = $_POST['codigo'];
 $nome = $_POST['nome'];
 $model = $_POST['modelo'];
