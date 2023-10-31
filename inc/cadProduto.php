@@ -21,15 +21,15 @@ if (mysqli_num_rows($verificarQuery) > 0) {
 } else {
     $query = "INSERT INTO produtos (autor, codigo, nome, modelo, descricao, custo, lucro, preco, volume) 
     VALUES ('$nomeUsuario','$cod', '$nome', '$model', '$description', '$custo', '$lucro', '$preco', '$vol')";
-    
-    $insert = mysqli_query($conexao, $query);
-    mysqli_close($conexao);
 
     if ($insert) {
         redirecionar('/src/home.php');
+        $insert = mysqli_query($conexao, $query);
+        mysqli_close($conexao);
     } else {
         echo "<script>alert('Não foi possível cadastrar este produto');</script>";
         redirecionar('/src/cadastro/produto.php');
+        mysqli_close($conexao);
     }
 }
 

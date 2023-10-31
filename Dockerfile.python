@@ -13,13 +13,16 @@ RUN apt-get update -yqq && apt-get install -yqq \
     python3-pip && \
     apt-get clean
 
+# Instale as bibliotecas Python especificadas
+RUN pip3 install --no-cache-dir pandas matplotlib numpy openpyxl mysql-connector-python
+
 # Definir o diretório de trabalho para o aplicativo Python
 WORKDIR /app
 
 # Copiar o arquivo de requisitos do Python
-COPY requirements.txt .
+#COPY requirements.txt .
 
-RUN pip3 install --no-cache-dir -r requirements.txt
+#RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copiar o código-fonte do aplicativo Python
 COPY . .

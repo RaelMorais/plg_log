@@ -3,7 +3,7 @@ session_start(); // Iniciar a sessão
 
 if (!isset($_SESSION["username"])) {
     header("HTTP/1.1 302 Found");
-    header("Location: /src/login.html");
+    header("Location: /src/login.php");
     exit;
 } else {
     $nomeUsuario = $_SESSION["username"];

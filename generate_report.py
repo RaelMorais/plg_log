@@ -3,9 +3,9 @@ import csv
 import os
 
 conexao = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
+    host='mysql',
+    user='adm_plg',
+    password='adm123',
     database='plg_log',
 )
 

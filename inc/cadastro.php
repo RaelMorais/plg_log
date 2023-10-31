@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $insert = mysqli_stmt_execute($stmt);
 
         if ($insert) {
-            echo "<script>window.location.href='/src/login.html'</script>";
+            echo "<script>window.location.href='/src/login.php'</script>";
         } else {
             echo "<script>alert('Não foi possível cadastrar esse usuário');window.location.href='/src/cadastro.html'</script>";
         }

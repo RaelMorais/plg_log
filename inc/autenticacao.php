@@ -6,7 +6,6 @@ include('conexao_adm.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['nome'];
     $senha = $_POST['senha'];
-    $entrar = $_POST['login'];
 
     if (isset($entrar)) {
         $sql = "SELECT senha, salt FROM usuarios WHERE username = ?";
@@ -17,13 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mysqli_stmt_fetch($stmt);
 
         if (password_verify($senha . $salt, $senhaArmazenada)) {
-            $_SESSION["username"] = $name; // Armazenar o nome de usuário na sessão
+            $_SESSION["username"] = $name;
             header('Location: /src/splash.php');
             exit();
-        } else {
-            echo "<script>alert('Login e/ou senha incorretos');";
-            header('Location: /src/login.html');
         }
     }
+    // Se as credenciais estiverem erradas, redirecione de volta para a tela de login com uma mensagem de erro
+    header('Location: /src/login.php?error=1');
+    exit();
 }
 ?>
