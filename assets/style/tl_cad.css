@@ -1,70 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* Importar fonte do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;1,100&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #023047
+:root {
+    --main-color: #047ff1; /* Cor principal (ajuste conforme necessário) */
+    --link-color: #666666; /* Cor dos links */
+    --text1: #999999; /* Cor do texto 1 */
+    --mouse: #696767; /* Cor do botão (mouse) */
+    --mouse2: blue; /* Cor do botão (mouse hover) */
+    --highligth-text: #0a0a0a; /* Cor do texto de destaque */
+    --input-text: #555555; /* Cor do texto dos campos de entrada */
+    --white-color: #FFFFFF; /* Cor de fundo branca */
+    --point-list: #CCCCCC; /* Cor dos pontos (se aplicável) */
+    --line-input: #D9D9D9; /* Cor da linha dos campos de entrada */
 }
 
+/* Zerar estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos para body e html (altura e fonte) */
+body, html {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos para links padrão */
+a {
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--link-color);
+    margin: 0;
+    transition: all 0.4s;
+}
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--highligth-text);
+}
+
+/* Estilos para o novo formulário de cadastro */
 .page {
     display: flex;
-    flex-direction: column;
-    align-items:center;
-    align-content:center;
-    justify-content:center;
-    width: 100%;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background-color: #480ca8;
 }
 
 .formCadastro {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    border-radius: 7px;
-    padding: 40px;
-    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
-    gap: 5px;
-}
-
-.areaCadastro img {
-    width: 420px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
 }
 
 .formCadastro h1 {
-    padding: 0;
-    margin: 0;
-    font-weight: 500;
-    font-size: 2.3em;
+    font-size: 39px;
+    color: var(--highligth-text);
+    line-height: 1.2;
+    text-align: center;
 }
 
-.formCadastro p {
-    display: inline-block;
+.form-floating {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.form-floating input.form-control {
+    font-size: 18px;
+    color: var(--input-text);
+    background: transparent;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid var(--line-input);
+    border-radius: 0;
+    width: 100%;
+    transition: border-color 0.4s;
+}
+
+.form-floating label {
+    font-size: 16px;
+    color: var(--input-text);
+    transform: translateY(10px);
+    display: block;
+    transition: transform 0.4s;
+}
+
+.form-floating input.form-control:focus {
+    border-color: var(--main-color);
+}
+
+/* Estilos para o botão de cadastro */
+.btn {
+    font-size: 16px;
+    color: var(--white-color);
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    background-color: var(--mouse);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.4s;
+}
+
+.btn:hover {
+    background-color: var(--mouse2);
+}
+
+.text1 {
+    text-decoration: none;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    color: var(--text1);
+    line-height: 1.5;
+  }
+
+ul, li {
+    margin: 0px;
+    list-style-type: none;
+}
+
+input, button {
+    outline: none !important;
+    border: none;
+}
+
+a {
     font-size: 14px;
-    color: #666;
-    margin-bottom: 25px;
-}
+    line-height: 1.7;
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  
+  a:focus {
+    outline: none !important;
+  }
+  
+  a:hover {
+    text-decoration: none;
+    color: var(--highligth-text);
+  }
 
-.formCadastro input {
-    padding: 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    border-radius: 4px;
-    transition: all linear 160ms;
-    outline: none;
-}
-
-.formCadastro a {
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 13px;
-    color: #555;
-    transition: all linear 160ms;
-}
-
-.formCadastro a:hover {
-    color: #f72585;
-}
+  a {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--link-color);
+      margin: 0px;
+      transition: all 0.4s;
+  }
