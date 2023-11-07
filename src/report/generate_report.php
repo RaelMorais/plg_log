@@ -1,6 +1,10 @@
 <?php
 require '/var/www/html/vendor/autoload.php';// Carregue a biblioteca PHPSpreadsheet
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
@@ -111,14 +115,14 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'etecprojetotcc1@gmail.com';
-$mail->Password = 'etec2023';
+$mail->Username = 'email';
+$mail->Password = 'senha do app';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
 // Configurações do e-mail
-$mail->setFrom('seu_email', 'Seu Nome');
-$mail->addAddress('destinatario@email.com', 'Nome do Destinatário');
+$mail->setFrom('seu email', 'seu nome');
+$mail->addAddress('email do destinatario', 'nome do destinatario');
 $mail->Subject = 'Relatório do PLG LOG';
 
 // Anexe o arquivo XLSX ao e-mail
@@ -129,9 +133,8 @@ $mail->Body = 'Relatório gerado com sucesso!';
 
 // Tente enviar o e-mail
 if ($mail->send()) {
-    echo 'E-mail enviado com sucesso!';
+    header('Location: /src/home.php'); // Redirecionamento em caso de sucesso
+    exit; // Encerre o script após o redirecionamento
 } else {
     echo 'Erro ao enviar e-mail: ' . $mail->ErrorInfo;
 }
-
-header('Location: /src/home.php');

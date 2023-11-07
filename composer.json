@@ -3,7 +3,8 @@
     "description": "PLG LOG projeto tcc",
     "type": "project",
     "require": {
-        "phpoffice/phpspreadsheet": "1.28"
+        "phpoffice/phpspreadsheet": "1.28",
+        "phpmailer/phpmailer": "^6.8"
     },
     "require-dev": {
         "phpoffice/phpspreadsheet": "1.28"
