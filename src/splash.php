@@ -4,7 +4,7 @@ session_start(); // Iniciar a sessão
 // Verifique se a variável de sessão "username" está definida
 if (!isset($_SESSION["username"])) {
     header("HTTP/1.1 302 Found");
-    header("Location: /src/login.html");
+    header("Location: /src/login.php");
     exit;
 }
 
@@ -14,29 +14,23 @@ $nomeUsuario = $_SESSION["username"];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="8;url=home.php">
-    <title>Splash Screen</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .splash-content {
-            text-align: center;
-        }
-    </style>
+    <meta http-equiv="refresh" content="3;url=home.php">
+    <title>Carregando...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/style/splash.css">
 </head>
+
 <body>
-    <div class="splash-content">
-        <img src="/assets/images/entrega.gif" alt="caminhão de entrega" style="width:96px;height:96px;"> 
-        <h1>Bem-vindo! <?php echo $nomeUsuario; ?></h1>
-        <p>Aguarde enquanto redirecionamos para a página de início.</p>
+    <div class="sound-wave">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 </body>
+
 </html>
