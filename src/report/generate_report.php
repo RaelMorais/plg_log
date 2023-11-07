@@ -104,4 +104,34 @@ $writer->save($caminhoRelatorioXLSX);
 // Feche a conexão com o banco de dados
 $mysqli->close();
 
+// Crie uma instância do PHPMailer
+$mail = new PHPMailer();
+
+// Configurações do servidor SMTP (substitua com suas configurações)
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'etecprojetotcc1@gmail.com';
+$mail->Password = 'etec2023';
+$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+$mail->Port = 587;
+
+// Configurações do e-mail
+$mail->setFrom('seu_email', 'Seu Nome');
+$mail->addAddress('destinatario@email.com', 'Nome do Destinatário');
+$mail->Subject = 'Relatório do PLG LOG';
+
+// Anexe o arquivo XLSX ao e-mail
+$mail->addAttachment($caminhoRelatorioXLSX);
+
+// Corpo do e-mail
+$mail->Body = 'Relatório gerado com sucesso!';
+
+// Tente enviar o e-mail
+if ($mail->send()) {
+    echo 'E-mail enviado com sucesso!';
+} else {
+    echo 'Erro ao enviar e-mail: ' . $mail->ErrorInfo;
+}
+
 header('Location: /src/home.php');
