@@ -1,0 +1,23 @@
+{
+    "name": "maycon/plg_log",
+    "description": "PLG LOG projeto tcc",
+    "type": "project",
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "require-dev": {
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Maycon\\PlgLog\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maycon Espindola",
+            "email": "mycone10@gmail.com"
+        }
+    ]
+}

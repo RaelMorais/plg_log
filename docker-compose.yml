@@ -49,17 +49,5 @@ services:
             - plglog
         depends_on:
             - mysql
-    
-    python:
-        build:
-            context: .
-            dockerfile: Dockerfile.python
-        container_name: python_plg
-        restart: always
-        volumes:
-            - .:/app
-        networks:
-            - plglog
-
 networks:
     plglog:

@@ -1,9 +1,10 @@
 <?php
 
 define('DB_NAME_ADM', 'plg_log_adm');
-define('DB_NAME', 'plg_log');
 define('DB_USER_ADM', 'adm_plg');
 define('DB_PASSWORD_ADM', 'adm123');
+
+define('DB_NAME', 'plg_log');
 define('DB_USER', 'adm_plg');
 define('DB_PASSWORD', 'adm123');
 define('DB_HOST', 'mysql');

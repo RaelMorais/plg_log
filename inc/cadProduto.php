@@ -3,6 +3,7 @@ session_start(); // Iniciar a sessão
 
 include('conexao.php');
 
+$nomeUsuario = isset($_SESSION["username"]) ? $_SESSION["username"] : null;
 $cod = $_POST['codigo'];
 $nome = $_POST['nome'];
 $model = $_POST['modelo'];
@@ -22,9 +23,10 @@ if (mysqli_num_rows($verificarQuery) > 0) {
     $query = "INSERT INTO produtos (autor, codigo, nome, modelo, descricao, custo, lucro, preco, volume) 
     VALUES ('$nomeUsuario','$cod', '$nome', '$model', '$description', '$custo', '$lucro', '$preco', '$vol')";
 
+    $insert = mysqli_query($conexao, $query);
+
     if ($insert) {
         redirecionar('/src/home.php');
-        $insert = mysqli_query($conexao, $query);
         mysqli_close($conexao);
     } else {
         echo "<script>alert('Não foi possível cadastrar este produto');</script>";

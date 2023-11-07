@@ -51,5 +51,8 @@ if (!isset($_SESSION["username"])) {
             <li class="nav-item">
                 <a class="nav-link" href="#">Perfil</a>
             </li>
+            <li class="nav-item">
+                <a href="/report/generate_report.php" class="nav-link">Gerar um Relatorio</a>
+            </li>
         </ul>
     </nav>

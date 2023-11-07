@@ -518,3 +518,5 @@ work/node_modules/bootstrap/scss/mixins/_utilities.scss
 work/node_modules/bootstrap/scss/mixins/_visually-hidden.scss
 work/node_modules/bootstrap/scss/utilities/_api.scss
 work/node_modules/bootstrap/scss/vendor/_rfs.scss
+
+/vendor/
