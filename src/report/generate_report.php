@@ -115,14 +115,14 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'etecprojetotcc1@gmail.com';
-$mail->Password = 'frca uyqg swpu hqcb';
+$mail->Username = 'email';
+$mail->Password = 'senha do app';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
 // Configurações do e-mail
-$mail->setFrom('etecprojetotcc1@gmail.com', 'Plg Log');
-$mail->addAddress('maycone@unicamp.br', 'Maycon E. Oliveira');
+$mail->setFrom('email do remetende', 'nome do remetende');
+$mail->addAddress('email do destinatario', 'nome do destinatario');
 $mail->Subject = 'Relatório do PLG LOG';
 
 // Anexe o arquivo XLSX ao e-mail
