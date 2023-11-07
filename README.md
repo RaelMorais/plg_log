@@ -16,4 +16,8 @@ source /docker-entrypoint-initdb.d/plg_log_geral.sql<br>
 docker ps<br>
 docker exec -it <nome_ou_id_do_contêiner> /bin/bash "use o do php"<br>
 
-chmod -R 755 /var/www/html/src/report/generate_report.php
+chmod -R 755 /var/www/html/src/report/generate_report.php<br>
+
+caso tenha sido criado o relatorio ja<br>
+
+chmod -R 755 /var/www/html/src/report/Relatorios/relatorio_data.xlsx 

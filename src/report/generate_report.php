@@ -115,14 +115,14 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'email';
-$mail->Password = 'senha do app';
+$mail->Username = 'etecprojetotcc1@gmail.com';
+$mail->Password = 'frca uyqg swpu hqcb';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
 // Configurações do e-mail
-$mail->setFrom('seu email', 'seu nome');
-$mail->addAddress('email do destinatario', 'nome do destinatario');
+$mail->setFrom('etecprojetotcc1@gmail.com', 'Plg Log');
+$mail->addAddress('maycone@unicamp.br', 'Maycon E. Oliveira');
 $mail->Subject = 'Relatório do PLG LOG';
 
 // Anexe o arquivo XLSX ao e-mail
@@ -133,8 +133,8 @@ $mail->Body = 'Relatório gerado com sucesso!';
 
 // Tente enviar o e-mail
 if ($mail->send()) {
-    header('Location: /src/home.php'); // Redirecionamento em caso de sucesso
-    exit; // Encerre o script após o redirecionamento
+    header('Location: /src/home.php');
+    exit;
 } else {
     echo 'Erro ao enviar e-mail: ' . $mail->ErrorInfo;
 }
