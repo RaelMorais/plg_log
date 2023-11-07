@@ -101,9 +101,7 @@ $caminhoRelatorioXLSX = __DIR__ . '/Relatorios/relatorio_data.xlsx';
 // Salve o arquivo XLSX
 $writer->save($caminhoRelatorioXLSX);
 
-echo "Relatório gerado com sucesso!";
-
 // Feche a conexão com o banco de dados
 $mysqli->close();
 
-header('./src/home.php');
+header('Location: /src/home.php');

@@ -3,10 +3,10 @@
     "description": "PLG LOG projeto tcc",
     "type": "project",
     "require": {
-        "phpoffice/phpspreadsheet": "^1.29"
+        "phpoffice/phpspreadsheet": "1.28"
     },
     "require-dev": {
-        "phpoffice/phpspreadsheet": "^1.29"
+        "phpoffice/phpspreadsheet": "1.28"
     },
     "license": "MIT",
     "autoload": {

@@ -52,7 +52,7 @@ if (!isset($_SESSION["username"])) {
                 <a class="nav-link" href="#">Perfil</a>
             </li>
             <li class="nav-item">
-                <a href="/report/generate_report.php" class="nav-link">Gerar um Relatorio</a>
+                <a href="/src/report/generate_report.php" class="nav-link">Gerar um Relatorio</a>
             </li>
         </ul>
     </nav>
