@@ -19,6 +19,9 @@ if (!isset($_SESSION["username"])) {
     <title>PJL LOG</title>
     <link rel="icon" type="image/x-icon" href="/imagens/Logo_MEIM_1.png">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.19.0/font/bootstrap-icons.css"
+        rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -53,6 +56,13 @@ if (!isset($_SESSION["username"])) {
             </li>
             <li class="nav-item">
                 <a href="/src/report/generate_report.php" class="nav-link">Gerar um Relatorio</a>
+            </li>
+            <li class="nav-item">
+                <form action="/inc/logout.php" method="post">
+                    <button type="submit" class="btn btn-link">
+                        <i class="bi bi-box-arrow-right"></i> Sair
+                    </button>
+                </form>
             </li>
         </ul>
     </nav>
