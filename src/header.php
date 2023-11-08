@@ -33,6 +33,12 @@ if (!isset($_SESSION["username"])) {
     <script src="/assets/js/rotas.js"></script>
     <script src="/assets/js/controller-soma-sub.js"></script>
     <script src="/assets/js/verificador_inatividade.js"></script>
+    <script>
+        function showInputFields() {
+            var form = document.getElementById("reportForm");
+            form.style.display = "block";
+        }
+        </script>
 </head>
 
 <body>
@@ -55,7 +61,14 @@ if (!isset($_SESSION["username"])) {
                 <a class="nav-link" href="#">Perfil</a>
             </li>
             <li class="nav-item">
-                <a href="/src/report/generate_report.php" class="nav-link">Gerar Relatorio</a>
+                <a class="nav-link" onclick="showInputFields()">
+                    Gerar Relatório
+                </a>
+                <form id="reportForm" action="/src/report/generate_report.php" method="post" onsubmit="return confirmInput()" style="display: none;">
+                    <input type="text" name="email" placeholder="E-mail" required>
+                    <input type="text" name="remetente" placeholder="Remetente" required>
+                    <button type="submit">Confirmar</button>
+                </form>
             </li>
             <li class="nav-item">
                 <form action="/inc/logout.php" method="post">

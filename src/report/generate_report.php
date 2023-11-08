@@ -17,6 +17,9 @@ function executeQuery($mysqli, $sql) {
     return $result;
 }
 
+$emailRemetende = $_POST['email'];
+$remetende = $_POST['remetente'];
+
 // Estabelecer a conexão com o banco de dados
 $mysqli = new mysqli("mysql", "adm_plg", "adm123", "plg_log");
 
@@ -99,8 +102,11 @@ while ($rowProduto = $resultProduto->fetch_assoc()) {
 // Crie um arquivo XLSX
 $writer = new Xlsx($spreadsheet);
 
+$dataAtual = date('Y-m-d H:i:s');
+$dataFormatada = str_replace(['-', ' ', ':'], '', $dataAtual);
+
 // Defina o caminho para o arquivo XLSX
-$caminhoRelatorioXLSX = __DIR__ . '/Relatorios/relatorio_data.xlsx';
+$caminhoRelatorioXLSX = __DIR__ . '/Relatorios/relatorio_'.$dataFormatada.'.xlsx';
 
 // Salve o arquivo XLSX
 $writer->save($caminhoRelatorioXLSX);
@@ -115,21 +121,21 @@ $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
-$mail->Username = 'email';
-$mail->Password = 'senha do app';
+$mail->Username = 'etecprojetotcc1@gmail.com';
+$mail->Password = 'frca uyqg swpu hqcb';
 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 $mail->Port = 587;
 
 // Configurações do e-mail
-$mail->setFrom('email do remetende', 'nome do remetende');
-$mail->addAddress('email do destinatario', 'nome do destinatario');
-$mail->Subject = 'Relatório do PLG LOG';
+$mail->setFrom('etecprojetotcc1@gmail.com', 'Equipe Vanguard');
+$mail->addAddress($emailRemetende, $remetende);
+$mail->Subject = 'Relatorio Estoque';
 
 // Anexe o arquivo XLSX ao e-mail
 $mail->addAttachment($caminhoRelatorioXLSX);
 
 // Corpo do e-mail
-$mail->Body = 'Relatório gerado com sucesso!';
+$mail->Body = 'Relatorio Estoque';
 
 // Tente enviar o e-mail
 if ($mail->send()) {
