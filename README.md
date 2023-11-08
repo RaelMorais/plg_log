@@ -20,4 +20,17 @@ chmod -R 755 /var/www/html/src/report/generate_report.php<br>
 
 caso tenha sido criado o relatorio ja<br>
 
-chmod -R 755 /var/www/html/src/report/Relatorios/relatorio_data.xlsx 
+chmod -R 755 /var/www/html/src/report/Relatorios/relatorio_data.xlsx<br>
+
+<h3>Para o funcionamento da geração de Relatorio</h3>
+deve-se usar algumas bibliotecas segue-se o procresso de instalação<br>
+<ul>
+  <li>sudo apt update</li>
+  <li>sudo apt install php-xml</li>
+  <li>sudo apt install php-gd</li>
+  <li>sudo apt install php-simplexml</li>
+  <li>sudo apt install php-xml</li>
+  <li>sudo apt install php-xmlreader</li>
+  <li>sudo apt install php-xmlwriter</li>
+  <li>sudo apt install php-zip</li>
+</ul>
