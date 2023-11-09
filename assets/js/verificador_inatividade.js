@@ -7,7 +7,7 @@ const resetInactivityTimer = () => {
 };
 
 const logoutUser = () => {
-  window.location.href = '/src/login.html';
+  window.location.href = '/src/login.php';
 };
 
 const updateSessionActivity = () => {
