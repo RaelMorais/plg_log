@@ -1,3 +1,21 @@
+CREATE USER 'adm_plg'@'%' IDENTIFIED BY 'adm123';
+GRANT ALL PRIVILEGES ON plg_log.* TO 'adm_plg'@'%';
+GRANT ALL PRIVILEGES ON plg_log_adm.* TO 'adm_plg'@'%';
+FLUSH PRIVILEGES;
+
+CREATE DATABASE plg_log_adm;
+
+USE plg_log_adm;
+
+CREATE TABLE `usuarios` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`username` varchar(225) NOT NULL,
+	`senha` varchar(500) NOT NULL,
+	`salt` varchar(255) NOT NULL,
+	`privilegio` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
 CREATE DATABASE plg_log;
 
 USE plg_log;

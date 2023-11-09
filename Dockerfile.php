@@ -16,7 +16,7 @@ COPY custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
 # Defina as permissões no diretório
 RUN mkdir -p /var/www/html/src/report && chmod -R 755 /var/www/html/src/report
 
-# Limpe o cache de pacotes para economizar espaço no contêiner
+# Limpe o cache de pacotes para economiz               ar espaço no contêiner
 RUN apt-get clean
 
 # Exponha a porta 80 para o Apache

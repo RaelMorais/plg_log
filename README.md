@@ -5,13 +5,8 @@ sudo docker-compose up -d <br>
 sudo docker-compose build <br>
 sudo docker exec -it mysql_plg mysql -u root -p <br>
 
-GRANT ALL PRIVILEGES ON plg_log.* TO 'adm_plg'@'%'; <br>
-GRANT ALL PRIVILEGES ON plg_log_adm.* TO 'adm_plg'@'%'; <br>
-FLUSH PRIVILEGES; <br>
-
-source /docker-entrypoint-initdb.d/init.sql <br>
-source /docker-entrypoint-initdb.d/plg_log_adm.sql <br>
-source /docker-entrypoint-initdb.d/plg_log_geral.sql<br>
+source /docker-entrypoint-initdb.d/config.sql<br>
+exit<br>
 
 docker ps<br>
 docker exec -it <nome_ou_id_do_contêiner> /bin/bash "use o do php"<br>
@@ -29,7 +24,6 @@ deve-se usar algumas bibliotecas segue-se o procresso de instalação<br>
   <li>sudo apt install php-xml</li>
   <li>sudo apt install php-gd</li>
   <li>sudo apt install php-simplexml</li>
-  <li>sudo apt install php-xml</li>
   <li>sudo apt install php-xmlreader</li>
   <li>sudo apt install php-xmlwriter</li>
   <li>sudo apt install php-zip</li>
