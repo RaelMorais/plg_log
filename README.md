@@ -9,7 +9,10 @@ source /docker-entrypoint-initdb.d/config.sql<br>
 exit<br>
 
 docker ps<br>
+
+```
 docker exec -it <nome_ou_id_do_contêiner> /bin/bash "use o do php"<br>
+```
 
 chmod -R 755 /var/www/html/src/report/generate_report.php<br>
 
